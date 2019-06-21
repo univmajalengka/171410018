@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2019 at 07:47 AM
+-- Generation Time: Jun 21, 2019 at 01:58 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -50,8 +50,22 @@ INSERT INTO `ang` (`date_ang`, `nota_ang`, `id_p`, `pokok_ang`, `ang`, `prov_ang
 ('2019-03-07', 5590, 3337913, '1000000', '100000', '5000'),
 ('2019-04-01', 6557, 3338298, '750000', '50000', '5000'),
 ('2019-06-03', 7998, 3339077, '200000', '20000', '5000'),
-('2019-04-18', 8142, 3339946, '450000', '50000', '5000'),
-('2019-05-23', 9346, 3339992, '500000', '50000', '5000');
+('2019-04-18', 8142, 3339946, '450000', '50000', '5000');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `angdetail_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `angdetail_view` (
+`date_ang` date
+,`nota_ang` int(6)
+,`id_p` int(11)
+,`pokok_ang` decimal(50,0)
+,`ang` decimal(50,0)
+,`prov_ang` decimal(50,0)
+);
 
 -- --------------------------------------------------------
 
@@ -90,6 +104,47 @@ INSERT INTO `anggota` (`id_a`, `id_user`, `tgl_d`, `nama_anggota`, `alamat_anggo
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `anggotadetail_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `anggotadetail_view` (
+`id_a` int(7)
+,`id_user` int(6)
+,`tgl_d` date
+,`nama_anggota` varchar(50)
+,`alamat_anggota` text
+,`jk_anggota` char(1)
+,`tgl_l_anggota` date
+,`hp_anggota` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `anggota_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `anggota_view` (
+`id_a` int(7)
+,`id_user` int(6)
+,`tgl_d` date
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `ang_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `ang_view` (
+`date_ang` date
+,`nota_ang` int(6)
+,`id_p` int(11)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pinj`
 --
 
@@ -118,6 +173,34 @@ INSERT INTO `pinj` (`id_a`, `id_p`, `date_pinj`, `jangka_pinj`, `nom_pinj`, `ket
 (1116694, 3339077, '2019-04-06', '2 Minggu', '200000', '-', 'L'),
 (1118811, 3339946, '2019-04-26', '1 Bulan', '400000', '-', 'L'),
 (1112999, 3339992, '2019-03-15', '5 Minggu', '450000', '-', 'B');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `pinjdetail_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `pinjdetail_view` (
+`id_a` int(7)
+,`id_p` int(11)
+,`date_pinj` date
+,`jangka_pinj` varchar(10)
+,`nom_pinj` decimal(10,0)
+,`ket_pinj` text
+,`lunas_pinj` varchar(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `pinj_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `pinj_view` (
+`id_a` int(7)
+,`id_p` int(11)
+,`date_pinj` date
+);
 
 -- --------------------------------------------------------
 
@@ -153,6 +236,36 @@ INSERT INTO `simp` (`id_a`, `date_simp`, `jenis_simp`, `jml_simp`, `ket_simp`, `
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `simpdetail_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `simpdetail_view` (
+`id_a` int(7)
+,`date_simp` date
+,`jenis_simp` varchar(50)
+,`jml_simp` decimal(50,0)
+,`ket_simp` text
+,`id_simp` int(5)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `simp_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `simp_view` (
+`id_a` int(7)
+,`date_simp` date
+,`jenis_simp` varchar(50)
+,`jml_simp` decimal(50,0)
+,`ket_simp` text
+,`id_simp` int(5)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -177,6 +290,99 @@ INSERT INTO `user` (`id_user`, `Username`, `password`) VALUES
 (691377, 'oktavia22', '9881e409a7f4299ee267bd775d18f1fd'),
 (902888, 'tiaChan', '5e0a47156df4f53f8b29071aff122713'),
 (991155, 'Wcahyo', '5cb68f0b06a9606a6063177a20ebca86');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `user_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `user_view` (
+`id_user` int(6)
+,`Username` varchar(20)
+,`password` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `angdetail_view`
+--
+DROP TABLE IF EXISTS `angdetail_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `angdetail_view`  AS  select `a`.`date_ang` AS `date_ang`,`a`.`nota_ang` AS `nota_ang`,`a`.`id_p` AS `id_p`,`a`.`pokok_ang` AS `pokok_ang`,`a`.`ang` AS `ang`,`a`.`prov_ang` AS `prov_ang` from (`ang` `a` join `pinj` `b` on((`b`.`id_p` = `a`.`id_p`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `anggotadetail_view`
+--
+DROP TABLE IF EXISTS `anggotadetail_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `anggotadetail_view`  AS  select `a`.`id_a` AS `id_a`,`a`.`id_user` AS `id_user`,`a`.`tgl_d` AS `tgl_d`,`a`.`nama_anggota` AS `nama_anggota`,`a`.`alamat_anggota` AS `alamat_anggota`,`a`.`jk_anggota` AS `jk_anggota`,`a`.`tgl_l_anggota` AS `tgl_l_anggota`,`a`.`hp_anggota` AS `hp_anggota` from (`anggota` `a` join `user` `b` on((`b`.`id_user` = `a`.`id_user`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `anggota_view`
+--
+DROP TABLE IF EXISTS `anggota_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `anggota_view`  AS  select `a`.`id_a` AS `id_a`,`a`.`id_user` AS `id_user`,`a`.`tgl_d` AS `tgl_d` from (`anggota` `a` join `user` `b` on((`b`.`id_user` = `a`.`id_user`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `ang_view`
+--
+DROP TABLE IF EXISTS `ang_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ang_view`  AS  select `a`.`date_ang` AS `date_ang`,`a`.`nota_ang` AS `nota_ang`,`a`.`id_p` AS `id_p` from (`ang` `a` join `pinj` `b` on((`b`.`id_p` = `a`.`id_p`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `pinjdetail_view`
+--
+DROP TABLE IF EXISTS `pinjdetail_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pinjdetail_view`  AS  select `a`.`id_a` AS `id_a`,`a`.`id_p` AS `id_p`,`a`.`date_pinj` AS `date_pinj`,`a`.`jangka_pinj` AS `jangka_pinj`,`a`.`nom_pinj` AS `nom_pinj`,`a`.`ket_pinj` AS `ket_pinj`,`a`.`lunas_pinj` AS `lunas_pinj` from (`pinj` `a` join `anggota` `b` on((`b`.`id_a` = `a`.`id_a`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `pinj_view`
+--
+DROP TABLE IF EXISTS `pinj_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pinj_view`  AS  select `a`.`id_a` AS `id_a`,`a`.`id_p` AS `id_p`,`a`.`date_pinj` AS `date_pinj` from (`pinj` `a` join `anggota` `b` on((`b`.`id_a` = `a`.`id_a`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `simpdetail_view`
+--
+DROP TABLE IF EXISTS `simpdetail_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `simpdetail_view`  AS  select `a`.`id_a` AS `id_a`,`a`.`date_simp` AS `date_simp`,`a`.`jenis_simp` AS `jenis_simp`,`a`.`jml_simp` AS `jml_simp`,`a`.`ket_simp` AS `ket_simp`,`a`.`id_simp` AS `id_simp` from (`simp` `a` join `anggota` `b` on((`b`.`id_a` = `a`.`id_a`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `simp_view`
+--
+DROP TABLE IF EXISTS `simp_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `simp_view`  AS  select `a`.`id_a` AS `id_a`,`a`.`date_simp` AS `date_simp`,`a`.`jenis_simp` AS `jenis_simp`,`a`.`jml_simp` AS `jml_simp`,`a`.`ket_simp` AS `ket_simp`,`a`.`id_simp` AS `id_simp` from (`simp` `a` join `anggota` `b` on((`b`.`id_a` = `a`.`id_a`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `user_view`
+--
+DROP TABLE IF EXISTS `user_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `user_view`  AS  select `a`.`id_user` AS `id_user`,`a`.`Username` AS `Username`,`a`.`password` AS `password` from (`user` `a` join `anggota` `b` on((`b`.`id_user` = `a`.`id_user`))) ;
 
 --
 -- Indexes for dumped tables
@@ -224,13 +430,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `ang`
 --
 ALTER TABLE `ang`
-  MODIFY `nota_ang` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9347;
+  MODIFY `nota_ang` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8143;
 
 --
 -- AUTO_INCREMENT for table `pinj`
 --
 ALTER TABLE `pinj`
-  MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT COMMENT 'No.Pinjaman', AUTO_INCREMENT=3339994;
+  MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT COMMENT 'No.Pinjaman', AUTO_INCREMENT=3339993;
 
 --
 -- AUTO_INCREMENT for table `simp`
@@ -242,7 +448,7 @@ ALTER TABLE `simp`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=991157;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=991156;
 
 --
 -- Constraints for dumped tables
