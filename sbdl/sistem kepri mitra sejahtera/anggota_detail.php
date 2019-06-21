@@ -1,7 +1,7 @@
 <?php 
 require 'anggota_fungsi.php';
 $id = $_GET["id_a"];
-$query = mysqli_query($conn, "SELECT * FROM anggota WHERE id_a =$id");
+$query = mysqli_query($conn, "SELECT * FROM anggotadetail_view WHERE id_a =$id");
 $row = mysqli_fetch_array($query);
 
 

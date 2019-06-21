@@ -1,6 +1,6 @@
 <?php 
 require 'pinj_fungsi.php';
-$pinj = query("SELECT * FROM pinj");
+$pinj = query("SELECT * FROM pinj_view");
  ?>
 
 <!DOCTYPE html>

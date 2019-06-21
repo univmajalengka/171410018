@@ -1,6 +1,6 @@
 <?php 
 require 'anggota_fungsi.php';
-$anggota = query("SELECT * FROM anggota");
+$anggota = query("SELECT * FROM anggota_view");
  ?>
 
 <!DOCTYPE html>

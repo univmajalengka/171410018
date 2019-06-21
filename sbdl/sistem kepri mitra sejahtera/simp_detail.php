@@ -1,7 +1,7 @@
 <?php 
 require 'sim_fungsi.php';
 $id = $_GET["id_simp"];
-$query = mysqli_query($conn, "SELECT * FROM simp WHERE id_simp =$id");
+$query = mysqli_query($conn, "SELECT * FROM simp_view WHERE id_simp =$id");
 $row = mysqli_fetch_array($query);
 
 

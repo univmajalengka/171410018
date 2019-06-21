@@ -1,6 +1,6 @@
 <?php 
 require 'ang_fungsi.php';
-$ang = query("SELECT * FROM ang");
+$ang = query("SELECT * FROM ang_view");
  ?>
 
 <!DOCTYPE html>

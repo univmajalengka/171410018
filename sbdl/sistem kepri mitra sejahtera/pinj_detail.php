@@ -1,7 +1,7 @@
 <?php 
 require 'pinj_fungsi.php';
 $id = $_GET["id_simp"];
-$query = mysqli_query($conn, "SELECT * FROM pinj WHERE id_p =$id");
+$query = mysqli_query($conn, "SELECT * FROM pinjdetail_view WHERE id_p =$id");
 $row = mysqli_fetch_array($query);
 
 

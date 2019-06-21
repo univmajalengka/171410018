@@ -1,6 +1,6 @@
 <?php 
 require 'functions_user.php';
-$user = query("SELECT * FROM user");
+$user = query("SELECT * FROM user_view");
  ?>
 
 <!DOCTYPE html>

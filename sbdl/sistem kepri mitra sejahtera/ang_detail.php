@@ -1,7 +1,7 @@
 <?php 
 require 'ang_fungsi.php';
 $id = $_GET["nota_ang"];
-$query = mysqli_query($conn, "SELECT * FROM ang WHERE nota_ang =$id");
+$query = mysqli_query($conn, "SELECT * FROM angdetail_view WHERE nota_ang =$id");
 $row = mysqli_fetch_array($query);
 
 

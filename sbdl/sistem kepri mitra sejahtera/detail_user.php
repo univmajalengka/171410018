@@ -1,7 +1,7 @@
 <?php 
 require 'functions_user.php';
 $id = $_GET["id_user"];
-$query = mysqli_query($conn, "SELECT * FROM user WHERE id_user =$id");
+$query = mysqli_query($conn, "SELECT * FROM user_view WHERE id_user =$id");
 $row = mysqli_fetch_array($query);
 
 

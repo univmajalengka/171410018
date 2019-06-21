@@ -1,6 +1,6 @@
 <?php 
 require 'sim_fungsi.php';
-$simp = query("SELECT * FROM simp");
+$simp = query("SELECT * FROM simpdetail_view");
  ?>
 
 <!DOCTYPE html>
